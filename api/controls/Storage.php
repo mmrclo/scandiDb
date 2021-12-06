@@ -1,5 +1,4 @@
 <?php
-
 include_once '../controls/Dataaccess.php';
 include_once '../models/Product.php';
 include_once '../models/Book.php';
@@ -113,15 +112,16 @@ class Storage
         }
     }
     
-    public function delete($data)
+    public function delete()
     {
         $this->filterRequest();
 
         $table = new Table();
         $table->connectToDB();
 
+        $id = $this->data->id;
+        
         $product = new Product();
-        $id = $data->id;
         $product->setId($id);
 
         $field = 'id';
@@ -131,10 +131,10 @@ class Storage
         
         if($table->selectRowFromDb($selectQuery, $field, $id)) {
             if($table->deleteRow($deleteQuery)) {
-                return array('message' => 'Product deleted');
+                return true;
             }
         } else {
-            return array('Error' => 'Could not find item to delete' );
+            return false;
         }
         die();
     }
