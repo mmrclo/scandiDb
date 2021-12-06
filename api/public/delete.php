@@ -10,14 +10,17 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method == "OPTIONS") {
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
-    header("HTTP/1.1 200 OK");
+    http_response_code(200);
     die();
 }
 
-$requesttype = $_SERVER['REQUEST_METHOD'];
+$id = isset($_GET['id']) ? $_GET['id'] : die();
 
-$datareq = json_decode(file_get_contents("php://input"));
+$datareq = (object)array('id' => $id);
 $storage = new Storage($datareq);
 
-echo json_encode($storage->delete($datareq));
-//$storage->badRequest();
+if($storage->delete()) {
+    http_response_code(202);
+} else {
+    $storage->badRequest();
+}
