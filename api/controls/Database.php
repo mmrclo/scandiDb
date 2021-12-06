@@ -3,16 +3,10 @@
 
 class Database {
     
-    /*private $host = 'localhost';
-    private $db_name = 'id18057629_scandiapp';
-    private $username = 'id18057629_roots';
-    private $password = '@<Q#7eCuP7Bp6Or~';
-    private $conn;
-    /* testing 3/12 21:29*/
     private $host = 'localhost';
-    private $db_name = 'scandiapp';
-    private $username = 'root';
-    private $password = 'loopsql741';
+    private $db_name = 'eu-cdbr-west-01.cleardb.com';
+    private $username = 'b04d2c13f761f4';
+    private $password = '7eec9c5e';
     private $conn;
 
     public function connect() {
