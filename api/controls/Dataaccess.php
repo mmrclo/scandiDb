@@ -58,8 +58,8 @@ class Table
             $stmt = $this->conn->rollback();
             $stmt = null;
             
-            return array('message' => 'No items found for on '.$fieldlist['spec_name'].'s ');
-        }
+            return false;
+        }  
     }
 
     protected function checkIfsOnDb($queryfrom, $field, $value)

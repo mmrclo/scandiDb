@@ -38,7 +38,6 @@ class Storage
     
     public function selectAll() 
     {
-        
         $table = new Table();
         $table->connectToDB();
         
@@ -49,10 +48,11 @@ class Storage
             $product = new $element();
             list($query, $fieldlist) = $product->prepareGetQuery();
             $partial = $table->selectAll($query, $fieldlist);
-            unset($product);
-            $result = array_merge($result, $partial);
+            if($partial){
+                $result = array_merge($result, $partial);
+            }
+            unset($product);   
         }
-
         return json_encode($result);
 
         die();

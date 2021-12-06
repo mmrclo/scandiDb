@@ -13,5 +13,3 @@ $datareq = json_decode(file_get_contents("php://input"));
 $storage = new Storage($datareq);
 
 echo $storage->selectAll();
-
-//$storage->badRequest();
