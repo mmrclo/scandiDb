@@ -10,7 +10,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method == "OPTIONS") {
     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
-    header("HTTP/1.1 200 OK");
+    //header("HTTP/1.1 200 OK");
+    http_response_code(200);
     die();
 }
 
@@ -19,4 +20,3 @@ $storage = new Storage($datareq);
 
 $result = $storage->save($datareq);
 echo json_encode($result);
-//$storage->badRequest();
