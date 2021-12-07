@@ -1,0 +1,13 @@
+DATABASE was created using PhpMyAdmin
+
+CREATE TABLE `heroku_95708d33a35746e`.`products` ( `id` INT(8) NOT NULL AUTO_INCREMENT , `sku` VARCHAR(16) NOT NULL , `name` VARCHAR(55) NOT NULL , `price` DECIMAL(9,2) NOT NULL , `spec_name` VARCHAR(25) NOT NULL , PRIMARY KEY (`id`), UNIQUE (`sku`)) ENGINE = InnoDB;
+
+CREATE TABLE `heroku_95708d33a35746e`.`dvd_discs` ( `product_id` INT(8) NOT NULL , `size` INT(9) NOT NULL , INDEX (`product_id`)) ENGINE = InnoDB;
+ALTER TABLE `dvd_discs` ADD CONSTRAINT `dvds_pid_fk` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `heroku_95708d33a35746e`.`books` ( `product_id` INT(8) NOT NULL , `weight` DECIMAL(6,3) NOT NULL , INDEX (`product_id`)) ENGINE = InnoDB;
+ALTER TABLE `books` ADD CONSTRAINT `books_pid_fk` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `heroku_95708d33a35746e`.`furnitures` ( `product_id` INT(8) NOT NULL , `height` DECIMAL(6,2) NOT NULL , `length` DECIMAL(6,2) NOT NULL , `width` DECIMAL(6,2) NOT NULL , INDEX (`product_id`)) ENGINE = InnoDB;
+ALTER TABLE `furnitures` ADD CONSTRAINT `furnitures_pid_fk` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
