@@ -52,6 +52,11 @@ class Storage
             }
             unset($product);   
         }
+        
+        usort($result, function($a, $b) {
+            return $a['id'] <=> $b['id'];
+        });
+        
         return json_encode($result);
 
         die();
