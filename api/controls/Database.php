@@ -3,17 +3,12 @@
 
 class Database {
     
-    private $host = '.cleardb.com';
-    private $db_name = 'heroku_';
-    private $username = '';
-    private $password = '';
+    private $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    private $host = $cleardb_url["host"];
+    private $db_name = substr($cleardb_url["path"],1);
+    private $username = $cleardb_url["user"];
+    private $password = $cleardb_url["pass"];
     private $conn;
-
-    /*$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $cleardb_server = $cleardb_url["host"];
-    $cleardb_username = $cleardb_url["user"];
-    $cleardb_password = $cleardb_url["pass"];
-    $cleardb_db = substr($cleardb_url["path"],1);*/
 
     public function connect() {
         $this->conn = null;
