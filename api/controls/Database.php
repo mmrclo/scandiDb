@@ -1,13 +1,17 @@
 <?php 
 //namespace controls\Database;
+    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    define("DBHOST", $cleardb_url["host"]);
+    define("DBNAME", substr($cleardb_url["path"],1));
+    define("USER", $cleardb_url["user"]);
+    define("PASSW", $cleardb_url["pass"]);
 
-class Database {
-    
-    private $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    private $host = $cleardb_url["host"];
-    private $db_name = substr($cleardb_url["path"],1);
-    private $username = $cleardb_url["user"];
-    private $password = $cleardb_url["pass"];
+class Database 
+{    
+    private $host = DBHOST;
+    private $db_name = DBNAME;
+    private $username = USER;
+    private $password = PASSW;
     private $conn;
 
     public function connect() {
@@ -19,12 +23,15 @@ class Database {
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES => 1
             ));
-          
+            echo 'Success con';
+            
         } catch(PDOException $e) {
               echo 'Connection Error: ' . $e->getMessage();
               die();
         }
 
-        return $this->conn;
+        //return $this->conn;
     }
 }
+$con = new Database();
+$con->connect();
