@@ -23,8 +23,6 @@ class Database
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES => 1
             ));
-            echo 'Success con';
-            
         } catch(PDOException $e) {
               echo 'Connection Error: ' . $e->getMessage();
               die();
