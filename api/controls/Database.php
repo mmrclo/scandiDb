@@ -30,8 +30,6 @@ class Database
               die();
         }
 
-        //return $this->conn;
+        return $this->conn;
     }
 }
-$con = new Database();
-$con->connect();
